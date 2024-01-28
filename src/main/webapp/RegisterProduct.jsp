@@ -21,26 +21,27 @@
             margin-top: 50px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: rgba(255, 255, 255, 0.8);
-        }
+         table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white; /* Set background color to white */
+        margin-top: 20px; /* Add margin for better spacing */
+    }
 
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
 
-        th {
-            background-color: #f2f2f2;
-        }
-
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.8);
-        }
-
+	td
+	{
+		color:black;
+	}
+    th {
+        background-color: #957910;
+        
+    }
         .form-container {
             max-width: 500px;
             margin: 0 auto;
@@ -55,6 +56,28 @@
             color: black;
             font-weight: bold;
         }
+        h1
+        {
+        color:white;
+        }
+        .namep
+        {
+        	color:white;
+        }
+     .navbar-custom {
+        background-color: #337ab7; /* Choose your desired background color */
+        color: #fff; /* Text color */
+        font-weight: bold; /* Bold font */
+    }
+
+    .navbar-custom .navbar-brand,
+    .navbar-custom .navbar-nav a {
+        color: #fff; /* Text color for brand and links */
+    }
+
+    .navbar-custom .navbar-nav a:hover {
+        color: blue; /* Change color on hover */
+    }
 
         /* Add more styles as needed */
     </style>
@@ -65,17 +88,18 @@
 
 <% String uname = (String) request.getParameter("uname");%>
 
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Hello <%= uname %></a>   
+<nav class="navbar navbar-custom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand text-white" href="#">Hello <%= uname %></a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="UserHome.jsp?loggedInUser=<%=uname%>" class="text-white">Home</a></li>
+            <li><a href='LoginUser.jsp' class="text-white">Logout</a></li>
+        </ul>
     </div>
-    <ul class="nav navbar-nav">
-        <li class="active"><a href="UserHome.jsp?loggedInUser=<%=uname%>">Home</a></li>
-        <li><a href='LoginUser.jsp'>Logout</a></li>  
-    </ul>
-  </div>
 </nav>
+
 
 <div class="container text-center">
     <div class="row">
@@ -107,7 +131,7 @@
         <div class="col-md-6">
             <form action="RegisterProduct.jsp?uname=<%=uname%>" method="post">
                 <div class="form-group">
-                    <label for="p_name">Enter Product Name:</label>
+                    <label for="p_name" class="namep">Enter Product Name:</label>
                     <div class="input-group">
                         <input type="text" name="p_name" class="form-control">
                         <span class="input-group-btn">
@@ -126,7 +150,7 @@
                     select * from products;
             </sql:query>
 
-            <h2>Available Products</h2>
+            <h1>Available Products</h1>
             <table class="table">
                 <thead>
                     <tr>

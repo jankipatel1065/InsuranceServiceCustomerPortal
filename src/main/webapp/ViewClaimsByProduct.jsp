@@ -7,6 +7,23 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style>
+.navbar-custom {
+        background-color: #337ab7; /* Choose your desired background color */
+        color: #fff; /* Text color */
+        font-weight: bold; /* Bold font */
+    }
+
+    .navbar-custom .navbar-brand,
+    .navbar-custom .navbar-nav a {
+        color: #fff; /* Text color for brand and links */
+    }
+
+    .navbar-custom .navbar-nav a:hover {
+        color: blue; /* Change color on hover */
+    }
+
+</style>
 <title>User Product Claims</title>
 </head>
 <body>
@@ -14,16 +31,16 @@
 	<% String prodName = (String) request.getParameter("pname"); %>
 	<% String prodSerialNum = (String) request.getParameter("prodSrNum"); %>
 	
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Hello <%= uname %></a>  
+<nav class="navbar navbar-custom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand text-white" href="#">Hello <%= uname %></a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="UserHome.jsp?loggedInUser=<%=uname%>" class="text-white">Home</a></li>
+            <li><a href='LoginUser.jsp' class="text-white">Logout</a></li>
+        </ul>
     </div>
-    <ul class="nav navbar-nav">
-     	<li class="active"><a href="UserHome.jsp?loggedInUser=<%=uname%>">Home</a></li>
-        <li><a href='LoginUser.jsp'>Logout</a></li>      
-    </ul>
-  </div>
 </nav>
 <br>
 
@@ -38,26 +55,34 @@
 			<sql:param value="<%=prodSerialNum%>" />
 		</sql:query>
 
-			<h2>Product Claims</h2>
-			<table border="1">
-				<tr>
-					<th>Product Name</th>
-					<th>Product Serial Number</th>
-					<th>Description</th>
-					<th>Claim Date</th>
-					<th>Status</th>
-				</tr>
+			<div class="container mt-4">
+    <h2><b>Product Claims</b></h2>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Product Serial Number</th>
+                    <th>Description</th>
+                    <th>Claim Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="col" items="${result.rows}">
+                    <tr>
+                        <td><c:out value="<%=prodName%>"></c:out></td>
+                        <td><c:out value="${col.serialNumber}"></c:out></td>
+                        <td><c:out value="${col.Description}"></c:out></td>
+                        <td><c:out value="${col.DateOfClaim}"></c:out></td>
+                        <td><c:out value="${col.Status}"></c:out></td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
+</div>
 
-				<c:forEach var="col" items="${result.rows}">
-					<tr>
-						<td><c:out value="<%=prodName%>"></c:out></td>
-						<td><c:out value="${col.serialNumber}"></c:out></td>
-						<td><c:out value="${col.Description}"></c:out></td>
-						<td><c:out value="${col.DateOfClaim}"></c:out></td>
-						<td><c:out value="${col.Status}"></c:out></td>						
-					</tr>
-				</c:forEach>
-			</table>
 <br>
 		<a href='UserHome.jsp?loggedInUser=<%=uname%>'>Go Home</a><br/>
 	</div>

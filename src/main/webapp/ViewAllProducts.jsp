@@ -26,6 +26,7 @@
         th {
             background-color: #f2f2f2;
         }
+        
     </style>
     <title>View All Products</title>
 </head>
@@ -35,7 +36,7 @@
 String adminname = (String) request.getParameter("loggedInAdmin");
 %>
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href='AdminHome.jsp?loggedInAdmin=<%=adminname%>'>Hello <%= adminname %></a>      
@@ -63,8 +64,8 @@ String adminname = (String) request.getParameter("loggedInAdmin");
 	</form>
 	
 	<sql:setDataSource var="dbCon" driver="com.mysql.cj.jdbc.Driver"
-			url="jdbc:mysql://localhost:3306/java_proj_db" user="root"
-			password="Lalit@123" />
+			url="jdbc:mysql://localhost:3306/abcdatabase" user="root"
+			password="Jankipatel@12345" />
 	
 	<sql:query dataSource="${dbCon}" var="res">
 			select * from products;

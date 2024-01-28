@@ -53,8 +53,8 @@ String prodSrNum = (String) request.getParameter("prodSrNum");
 
 <div class="container text-center">
 	<sql:setDataSource var="dbCon" driver="com.mysql.cj.jdbc.Driver"
-			url="jdbc:mysql://localhost:3306/java_proj_db" user="root"
-			password="Lalit@123" />
+			url="jdbc:mysql://localhost:3306/abcdatabase" user="root"
+			password="Jankipatel@12345" />
 			
 	<sql:query dataSource="${dbCon}" var="result">
 		select * from products WHERE ProductSerialNumber = ?;
